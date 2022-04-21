@@ -1,4 +1,14 @@
 (function() { 
+	async function loadFonts() {
+		const font = new FontFace('Arcade', 'url(Arcade In.ttf)');
+		// wait for font to be loaded
+		await font.load();
+		// add font to document
+		document.fonts.add(font);
+		// enable font with CSS class
+		document.body.classList.add('fonts-loaded');
+	}
+
     "use strict";
     const canvas = document.getElementById("tetris");
     const context = canvas.getContext("2d"); 
@@ -162,7 +172,7 @@
 	};
 	let gameOver = function() {
 		clearInterval(gameLoop);
-		context.font = "2px sans-serif";
+		context.font = "2px fonts-loaded";
 		context.fillStyle = "red";
 		context.textAlign ="center";
 		context.textBaseline = "middle";
